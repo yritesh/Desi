@@ -13,6 +13,9 @@ public class PostDetails {
 	private Integer id;
 	
 	
+	private Integer post;
+	
+	
 	private String title;
 	
 	

@@ -1,30 +1,35 @@
 package com.desi.application.models;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "posts", schema = "master")
-public class Posts {
+@Table(name = "postComment", schema = "master")
+public class PostComment {
 	
 	private Integer id;
 	
 	
-	private Integer contentId;
+	private Integer post;
+	
+	
+	private Integer user;
+	
+	
+	private String createdOn;
 	
 	
 	private Boolean active;
 	
-	
 	private Boolean deleted;
 	
-	
-	Posts(){
+	PostComment(){
+		
 		this.active=true;
 		this.deleted=false;
 	}
+	
 }
