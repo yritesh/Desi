@@ -70,7 +70,7 @@ public class RSAUtil {
     
     public static void main(String[] args) throws IllegalBlockSizeException, InvalidKeyException, NoSuchPaddingException, BadPaddingException {
         try {
-            String encryptedString = Base64.getEncoder().encodeToString(encrypt("tiger", publicKey));
+            String encryptedString = Base64.getEncoder().encodeToString(encrypt("postgres", publicKey));
             System.out.println(encryptedString);
             String decryptedString = RSAUtil.decrypt("NkpPg4uaJbjc3gE3BWtPgHMUUsNwLs13KZIven7mEiNxk7E7j46jHgy0rd1G9GcU3vWqBtiMfkLA7MFdHQU48h4+WbX9kE5LHotF36CiucWt2JMEVAPlq4vD1zRP6A/4KIO86y9rXvKOBbbMeNcc0D+6JK5iZuNkK/z4xm0w3Bk=", privateKey);
             System.out.println(decryptedString);
