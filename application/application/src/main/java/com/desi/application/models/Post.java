@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,12 +17,24 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "posts", schema = "master")
-public class Posts {
+@Table(name = "post", schema = "master")
+public class Post {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@OneToOne
+	@JoinColumn(name = "postDetailsId")
+	private PostDetails postDetails;
+	
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
+	
+	@OneToOne
+	@JoinColumn(name = "categoryId")
+	private Category category;
 	
 	private Integer bookmarkCount;  
 	
@@ -38,10 +52,7 @@ public class Posts {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
 	private List<Tags> tags;
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "post")
-	private PostDetails details;
-	
-	Posts(){
+	Post(){
 		this.active=true;
 		this.deleted=false;
 	}

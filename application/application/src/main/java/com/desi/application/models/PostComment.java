@@ -20,16 +20,12 @@ public class PostComment {
 	private Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name = "posts_id")
-	private Posts posts;
+	@JoinColumn(name = "postId")
+	private Post post;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="userId")
 	private User user;
-	
-	
-	private String createdOn;
-	
 	
 	private Boolean active;
 	

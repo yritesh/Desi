@@ -1,5 +1,7 @@
 package com.desi.application.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.desi.application.utilityClasses.AdminRoles;
@@ -28,22 +31,27 @@ public class User {
 	@Column(length = 32, columnDefinition = "varchar(32) default 'SUBSCRIBER'")
 	@Enumerated(value = EnumType.STRING)
 	private AdminRoles role = AdminRoles.SUBSCRIBER;
+
+	@OneToOne
+	@JoinColumn(name = "profileId")
+	private Profile profile;
 	
 	private Boolean isActive;
 	
 	private Boolean isDeleted;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "posts_id")
-	private Posts posts;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Post> post;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "postComment_id")
-	private PostComment comment;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<PostComment> comment;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tags_id")
-	private Tags tags;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Tags> tags;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Bookmark> bookmark;
+	
 	
 	User(){
 		this.isActive=true;
